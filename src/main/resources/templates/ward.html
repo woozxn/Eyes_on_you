@@ -1,0 +1,71 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <link href="../css/bootstrap.min.css"
+          th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+    <style>
+ .container {
+ max-width: 560px;
+ }
+ </style>
+</head>
+<body>
+<div class="container">
+    <div class="py-5 text-center">
+        <h2>피보호자 상세</h2>
+    </div>
+
+    <div class="row">
+        <div class="col">
+            <img th:src="@{/images/} + ${ward.fileName}" width =200px, height= 250px>
+        </div>
+        <div class="col">
+            <div>
+                <label for="wardId">피보호자 ID</label>
+                <input type="text" id="wardId" name="wardId" class="form-control"
+                       value="1" th:value="${ward.id}" readonly>
+            </div>
+
+            <div>
+                <label for="name">피보호자명</label>
+                <input type="text" id="name" name="name" class="form-control"
+                       value="피보호자A" th:value="${ward.name}" readonly>
+            </div>
+        </div>
+    </div>
+
+    <div>
+        <label for="phoneNum">전화번호</label>
+        <input type="text" id="phoneNum" name="phoneNum" class="form-control"
+               value="10000" th:value="${ward.phoneNum}" readonly>
+    </div>
+    <div>
+        <label for="lastSeen">마지막 추적 시간</label>
+        <input type="text" id="lastSeen" name="lastSeen" class="form-control"
+               value="10" th:value="${#temporals.format(ward.lastSeen, 'yyyy-MM-dd HH:mm:ss')}" readonly>
+    </div>
+    <div>
+        <label for="description">추가사항</label>
+        <input type="text" id="description" name="description" class="form-control"
+               value="10" th:value="${ward.description}" readonly>
+    </div>
+    <hr class="my-4">
+    <div class="row">
+        <div class="col">
+            <button class="w-100 btn btn-primary btn-lg"
+                    onclick="location.href='editForm.html'"
+
+                    th:onclick="|location.href='@{|/wards/edit/${ward.id}|}'|"
+                    type="button">피보호자 수정</button>
+        </div>
+        <div class="col">
+            <button class="w-100 btn btn-secondary btn-lg"
+                    onclick="location.href='wards.html'"
+                    th:onclick="|location.href='@{/wards}'|"
+                    type="button">목록으로</button>
+        </div>
+    </div>
+</div> <!-- /container -->
+</body>
+</html>
